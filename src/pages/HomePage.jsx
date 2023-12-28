@@ -63,7 +63,7 @@ function HomePage() {
           <h1>Simplify, Split, Settle – The Fairest Way to Share Expenses!</h1>
           <Icons>
             <Link>
-              <GrAppleAppStore style={{ color: "#fff", fontSize: "3rem" }} />
+              <GrAppleAppStore style={{ color: "#ec625f", fontSize: "3rem" }} />
             </Link>
             <Link>
               <BiLogoPlayStore style={{ color: "#ec625f", fontSize: "3rem" }} />
