@@ -7,19 +7,19 @@ import Button2 from "../ui/Button2";
 import { Link } from "react-router-dom";
 
 const StyledSection = styled.section`
-  width: 100vw;
-  height: 85vh;
-  padding: 0 10rem;
+  width: 100dvw;
+  height: 85dvh;
+  padding: 10rem;
   background-color: var(--color-dark-0);
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
   gap: 2rem;
 
   @media (max-width: 700px) {
     flex-direction: column-reverse;
-    /* height: fit-content; */
-    padding: 4rem;
+    padding: 10rem 4rem 4rem;
     overflow-x: hidden;
     text-align: center;
   }
@@ -32,12 +32,15 @@ const StyledSection = styled.section`
 
   div {
     flex: 1;
-    /* border: 2px dotted pink; */
   }
 
   span {
     margin-right: 1rem;
     margin-top: -2rem;
+  }
+
+  p {
+    padding: 0.6rem 0;
   }
 `;
 
@@ -56,8 +59,8 @@ const Icons = styled.div`
 
 function HomePage() {
   return (
-    <div>
-      <Header />
+    <>
+      <Header bgColor="dark" />
       <StyledSection>
         <div>
           <h1>Simplify, Split, Settle – The Fairest Way to Share Expenses!</h1>
@@ -70,8 +73,10 @@ function HomePage() {
             </Link>
           </Icons>
           <Button2>
-            <span>Download the App Now</span>
-            <BsCloudDownload />
+            <p>
+              <span>Download the App Now</span>
+              <BsCloudDownload />
+            </p>
           </Button2>
         </div>
         <div>
@@ -81,7 +86,7 @@ function HomePage() {
           />
         </div>
       </StyledSection>
-    </div>
+    </>
   );
 }
 

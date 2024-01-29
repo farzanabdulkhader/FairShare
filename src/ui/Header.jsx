@@ -1,7 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import Logo from "./Logo";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
+
+const bgColors = {
+  dark: css`
+    background-color: var(--color-dark-0);
+  `,
+  transparent: css`
+    background-color: transparent;
+  `,
+};
 
 const StyledNav = styled.ul`
   display: flex;
@@ -9,15 +18,18 @@ const StyledNav = styled.ul`
   gap: 5rem;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--color-dark-0);
   height: 15vh;
+  width: 100%;
   padding: 0 5rem;
+  ${(props) => bgColors[props.bgColor]};
 
   .hidden {
     display: none;
   }
 
   @media (max-width: 700px) {
+    padding: 0 2rem;
+
     .show {
       display: none;
     }
@@ -28,10 +40,10 @@ const StyledNav = styled.ul`
   }
 `;
 
-function Header() {
+function Header({ bgColor = "transparent" }) {
   return (
-    <StyledNav>
-      <li style={{ flex: 1 }}>
+    <StyledNav bgColor={bgColor}>
+      <li style={{ flex: 1, textAlign: "left" }}>
         <Link to="/">
           <Logo />
         </Link>
@@ -43,7 +55,7 @@ function Header() {
         <NavLink>Pricing</NavLink>
       </li>
       <li className="show">
-        <NavLink to="/sign-in">Login</NavLink>
+        <NavLink to="/login">Login</NavLink>
       </li>
       <li className="hidden">
         <NavLink>
