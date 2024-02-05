@@ -41,7 +41,7 @@ function Register() {
     <StyledSignUp>
       <motion.div
         animate={{ x: [460, 0] }}
-        transition={{ duration: 1, type: "spring" }}
+        transition={{ duration: 0.5, type: "tween" }}
       >
         <StyledBox>
           <h1>Register</h1>

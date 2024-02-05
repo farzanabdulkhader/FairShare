@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import Logo from "./Logo";
 import styled, { css } from "styled-components";
 import { AiOutlineMenu } from "react-icons/ai";
+import { StyleSheetManager } from "styled-components";
 
 const bgColors = {
   dark: css`
@@ -27,6 +28,13 @@ const StyledNav = styled.ul`
     display: none;
   }
 
+  .name img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid var(--color-dark-1);
+  }
+
   @media (max-width: 700px) {
     padding: 0 2rem;
 
@@ -40,29 +48,43 @@ const StyledNav = styled.ul`
   }
 `;
 
-function Header({ bgColor = "transparent" }) {
+function Header({
+  bgColor = "transparent",
+  isLoggedIn = false,
+  isRegistered = true,
+}) {
   return (
-    <StyledNav bgColor={bgColor}>
-      <li style={{ flex: 1, textAlign: "left" }}>
-        <Link to="/">
-          <Logo />
-        </Link>
-      </li>
-      <li className="show">
-        <NavLink>Features</NavLink>
-      </li>
-      <li className="show">
-        <NavLink>Pricing</NavLink>
-      </li>
-      <li className="show">
-        <NavLink to="/login">Login</NavLink>
-      </li>
-      <li className="hidden">
-        <NavLink>
-          <AiOutlineMenu />
-        </NavLink>
-      </li>
-    </StyledNav>
+    <StyleSheetManager shouldForwardProp={(prop) => prop !== "bgColor"}>
+      <StyledNav bgColor={bgColor}>
+        <li style={{ flex: 1, textAlign: "left" }}>
+          <Link to="/">
+            <Logo />
+          </Link>
+        </li>
+        {isLoggedIn ? (
+          <li className="name">
+            <img src="images/cheersday.jpg" />
+          </li>
+        ) : (
+          <>
+            <li className="show">
+              <NavLink>Features</NavLink>
+            </li>
+            <li className="show">
+              <NavLink to="/friends">Pricing</NavLink>
+            </li>
+            <li className="show">
+              <NavLink to={isRegistered && "/login"}>Login</NavLink>
+            </li>
+            <li className="hidden">
+              <NavLink>
+                <AiOutlineMenu />
+              </NavLink>
+            </li>
+          </>
+        )}
+      </StyledNav>
+    </StyleSheetManager>
   );
 }
 

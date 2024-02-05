@@ -74,8 +74,8 @@ function Login() {
   return (
     <StyledLogin>
       <motion.div
+        transition={{ duration: 0.5, type: "tween" }}
         animate={{ x: [-460, 0] }}
-        transition={{ duration: 1, type: "spring" }}
       >
         <StyledBox>
           <h1>Login</h1>

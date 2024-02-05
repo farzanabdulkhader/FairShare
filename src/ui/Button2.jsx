@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+const sizes = {
+  small: css`
+    padding: 0.5rem 1rem;
+  `,
+};
 
 const StyledButton2 = styled.button`
   color: #ec625f;
@@ -8,7 +14,9 @@ const StyledButton2 = styled.button`
   padding: 1.2rem 4rem;
   line-height: 2rem;
 
-  &:hover {
+  ${(props) => sizes[props.size]}
+
+  &:hover, &:active {
     background-color: #ec625f;
     color: var(--color-grey-50);
   }
@@ -18,8 +26,12 @@ const StyledButton2 = styled.button`
   }
 `;
 
-function Button2({ children, onClick }) {
-  return <StyledButton2 onClick={onClick}>{children}</StyledButton2>;
+function Button2({ children, onClick, size, disabled }) {
+  return (
+    <StyledButton2 size={size} onClick={onClick}>
+      {children}
+    </StyledButton2>
+  );
 }
 
 export default Button2;

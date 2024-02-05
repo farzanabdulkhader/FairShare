@@ -1,18 +1,20 @@
-import { NavLink, Navigate, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import styled, { css } from "styled-components";
 import Header from "../ui/Header";
 import { useState } from "react";
 import Button2 from "../ui/Button2";
+import { StyleSheetManager } from "styled-components";
 
 const StyledSection = styled.div`
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 0.75),
-      rgba(0, 0, 0, 0.75)
+      rgba(10, 0, 0, 0.6),
+      rgba(10, 0, 0, 0.6)
     ),
-    url("/images/cheersday.jpg");
+    url("images/pic12.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -126,31 +128,33 @@ function LogLayout() {
 
   return (
     <>
-      <StyledSection>
-        <Header />
-        <StyledMain>
-          <StyledContainer isRegistered={isRegistered}>
-            <StyledLeft isRegistered={isRegistered}>
-              <h3>
-                {isRegistered
-                  ? "Don't have an account?"
-                  : "Have an account Already?"}
-              </h3>
-              <p>
-                {isRegistered
-                  ? "Friends don't let friends pay for all, let's Split the bill and avoid the fall."
-                  : "Login to start sharing the cost and creating lasting bonds"}
-              </p>
-              <NavLink to={isRegistered ? "/register" : "/login"}>
-                <Button2 onClick={handleClick}>
-                  {isRegistered ? "Sign Up" : "Login"}
-                </Button2>
-              </NavLink>
-            </StyledLeft>
-            <Outlet />
-          </StyledContainer>
-        </StyledMain>
-      </StyledSection>
+      <StyleSheetManager shouldForwardProp={(prop) => prop !== "isRegistered"}>
+        <StyledSection>
+          <Header isRegistered={isRegistered} />
+          <StyledMain>
+            <StyledContainer isRegistered={isRegistered}>
+              <StyledLeft isRegistered={isRegistered}>
+                <h3>
+                  {isRegistered
+                    ? "Don't have an account?"
+                    : "Have an account Already?"}
+                </h3>
+                <p>
+                  {isRegistered
+                    ? "Friends don't let friends pay for all, let's Split the bill and avoid the fall."
+                    : "Login to start sharing the cost and creating lasting bonds"}
+                </p>
+                <NavLink to={isRegistered ? "/register" : "/login"}>
+                  <Button2 onClick={handleClick}>
+                    {isRegistered ? "Sign Up" : "Login"}
+                  </Button2>
+                </NavLink>
+              </StyledLeft>
+              <Outlet />
+            </StyledContainer>
+          </StyledMain>
+        </StyledSection>{" "}
+      </StyleSheetManager>
     </>
   );
 }
