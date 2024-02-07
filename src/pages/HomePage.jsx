@@ -80,10 +80,7 @@ function HomePage() {
           </Button2>
         </div>
         <div>
-          <img
-            src="/images/undraw_coffee_with_friends.svg"
-            // src="/images/undraw_special_event.svg"
-          />
+          <img src="/images/undraw_coffee_with_friends.svg" />
         </div>
       </StyledSection>
     </>

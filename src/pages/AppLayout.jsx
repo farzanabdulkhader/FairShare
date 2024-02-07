@@ -12,6 +12,7 @@ const StyledSection = styled.div`
   background-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 0.8),
+      rgba(20, 0, 0, 0.8),
       rgba(0, 0, 0, 0.8)
     ),
     url("../public/images/pic2.jpg");
