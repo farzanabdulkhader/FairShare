@@ -71,7 +71,7 @@ function Header({
               <NavLink>Features</NavLink>
             </li>
             <li className="show">
-              <NavLink to="/friends">Pricing</NavLink>
+              <NavLink to="/">Pricing</NavLink>
             </li>
             <li className="show">
               <NavLink to={isRegistered && "/login"}>Login</NavLink>

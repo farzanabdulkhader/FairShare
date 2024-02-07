@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import styled from "styled-components";
 import FriendList from "../components/FriendList";
 import User from "../components/User";
-import { FriendProvider } from "../FriendContext";
+import { FriendProvider } from "../context/FriendContext";
 
 const StyledSection = styled.div`
   /* border: 1px solid red; */

@@ -1,7 +1,7 @@
 import styled, { StyleSheetManager, css } from "styled-components";
 import Button2 from "../ui/Button2";
 import { useParams } from "react-router-dom";
-import { useFriend } from "../FriendContext";
+import { useFriend } from "../context/FriendContext";
 
 const StyledFriend = styled.div`
   height: 8.2rem;

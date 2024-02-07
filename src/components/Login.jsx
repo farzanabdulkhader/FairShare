@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import Button from "../ui/Button";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const StyledLogin = styled.div`
   flex: 0.55;
@@ -71,6 +74,22 @@ const StyledBox = styled.div`
 `;
 
 function Login() {
+  const [username, setUsername] = useState("farzana@gmail.com");
+  const [password, setPassword] = useState("farzana");
+  const { login, isAuthenticated } = useAuth();
+
+  const navigate = useNavigate();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(username, password);
+    if (username && password) login(username, password);
+  }
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/friends");
+  }, [isAuthenticated, navigate]);
+
   return (
     <StyledLogin>
       <motion.div
@@ -79,11 +98,26 @@ function Login() {
       >
         <StyledBox>
           <h1>Login</h1>
-          <input placeholder="Username" />
-          <input placeholder="Password" />
-          <input type="checkbox" id="checkbox" />
-          <label htmlFor="checkbox">Remember me</label>
-          <Button>Login</Button>
+          <form onSubmit={handleSubmit}>
+            <input
+              placeholder="Username"
+              defaultValue="farzana@gmail.com"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              defaultValue="farzana"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <input
+              type="checkbox"
+              id="checkbox"
+              // onChange={(e) => setIsRemember(e.target.value)}
+            />
+            <label htmlFor="checkbox">Remember me</label>
+            <Button type="submit">Login</Button>
+          </form>
         </StyledBox>
       </motion.div>
     </StyledLogin>

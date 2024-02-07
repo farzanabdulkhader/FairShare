@@ -3,7 +3,7 @@ import Button from "../ui/Button";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { useFriend } from "../FriendContext";
+import { useFriend } from "../context/FriendContext";
 
 const StyledForm = styled.div`
   font-size: 1.4rem;
@@ -68,13 +68,15 @@ function NewFriendForm() {
   const navigate = useNavigate();
 
   function handleSubmit() {
-    const newFriend = {
-      id: Math.floor(Math.random() * 10000000),
-      name,
-      imageUrl: `/images/${imageUrl}`,
-      balance: 0,
-    };
-    onAddFriend(newFriend);
+    if (name) {
+      const newFriend = {
+        id: Math.floor(Math.random() * 10000000),
+        name,
+        imageUrl: `/images/${imageUrl}`,
+        balance: 0,
+      };
+      onAddFriend(newFriend);
+    }
   }
 
   return (

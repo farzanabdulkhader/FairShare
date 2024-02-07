@@ -2,6 +2,8 @@ import styled from "styled-components";
 import Button from "../ui/Button";
 import { color } from "framer-motion";
 import Button2 from "../ui/Button2";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const StyledHeader = styled.div`
   height: 7rem;
@@ -35,14 +37,24 @@ const StyledUser = styled.div`
 `;
 
 function User() {
+  const { logout } = useAuth();
+  const navigate = useNavigate();
+
+  function handleClick() {
+    logout();
+    navigate("/login");
+  }
+
   return (
     <StyledHeader>
       <StyledUser>
-        <img src="../public/images/me.png" />
+        <img src="/images/me.png" />
         <p>
           Welcome, <b>User</b>
         </p>
-        <Button size="small">LOGOUT</Button>
+        <Button size="small" onClick={handleClick}>
+          LOGOUT
+        </Button>
       </StyledUser>
     </StyledHeader>
   );

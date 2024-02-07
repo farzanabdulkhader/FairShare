@@ -3,7 +3,7 @@ import Friend from "./Friend";
 import Button from "../ui/Button";
 import Logo from "../ui/Logo";
 import { Link, useNavigate } from "react-router-dom";
-import { useFriend } from "../FriendContext";
+import { useFriend } from "../context/FriendContext";
 
 const StyledFriendList = styled.div`
   /* border: 1px solid red; */
@@ -47,7 +47,7 @@ function FriendList() {
             size="small"
             className="button"
             onClick={() => {
-              navigate("/add-friend");
+              navigate("add-friend");
               onSelectFriend(null);
             }}
           >

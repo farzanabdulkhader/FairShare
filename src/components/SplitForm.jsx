@@ -4,7 +4,7 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { useNavigate, useParams } from "react-router-dom";
 import "../data/friends";
 import { useState } from "react";
-import { useFriend } from "../FriendContext";
+import { useFriend } from "../context/FriendContext";
 
 const StyledForm = styled.div`
   font-size: 1.4rem;
@@ -78,7 +78,7 @@ function SplitForm() {
     whosPaying === "user" ? billValue - userExpense : -userExpense;
 
   function handleSubmit() {
-    onBillSplit(newBalance);
+    billValue > 0 && userExpense >= 0 && onBillSplit(newBalance);
   }
 
   return (
@@ -105,7 +105,7 @@ function SplitForm() {
             <input
               placeholder="$"
               value={billValue}
-              onChange={(e) => setBillValue(e.target.value)}
+              onChange={(e) => setBillValue(Number(e.target.value))}
             />
           </div>
           <div className="inputLine">
@@ -113,7 +113,7 @@ function SplitForm() {
             <input
               placeholder="$"
               value={userExpense}
-              onChange={(e) => setUserExpense(e.target.value)}
+              onChange={(e) => setUserExpense(Number(e.target.value))}
             />
           </div>
           <div className="inputLine">

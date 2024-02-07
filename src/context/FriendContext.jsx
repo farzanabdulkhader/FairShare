@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import initialFriends from "../src/data/friends";
+import initialFriends from "../data/friends";
 import { useNavigate } from "react-router-dom";
 
 const FriendContext = createContext();
@@ -12,7 +12,7 @@ function FriendProvider({ children }) {
 
   function handleSelectFriend(friend) {
     setSelectedFriend(friend);
-    friend && navigate(`/split-form/${friend.id}`);
+    friend && navigate(`split-form/${friend.id}`);
   }
 
   function handleAddFriend(newFriend) {
@@ -48,6 +48,9 @@ function FriendProvider({ children }) {
 }
 function useFriend() {
   const context = useContext(FriendContext);
+  if (context === undefined) {
+    throw new Error("AuthContect was used outside the AuthProvider");
+  }
   return context;
 }
 
