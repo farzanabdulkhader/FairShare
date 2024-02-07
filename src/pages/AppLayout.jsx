@@ -15,7 +15,7 @@ const StyledSection = styled.div`
       rgba(20, 0, 0, 0.8),
       rgba(0, 0, 0, 0.8)
     ),
-    url("../public/images/pic2.jpg");
+    url("/images/pic2.jpg");
   background-position: 0 -90px;
   background-size: cover;
 `;
